@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人工作日志管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧编辑区 -->
+        <aside class="left-panel">
+            <header class="panel-header">
+                <h1>工作日志管理</h1>
+            </header>
+            
+            <!-- 日期选择器 -->
+            <section class="date-section">
+                <label for="date-picker">选择日期：</label>
+                <input type="date" id="date-picker" class="date-picker">
+            </section>
+            
+            <!-- 工作记录编辑域 -->
+            <section class="work-record-section">
+                <h2>当日工作记录</h2>
+                <textarea id="work-record" placeholder="请输入今日工作内容..." rows="8"></textarea>
+            </section>
+            
+            <!-- 任务管理区 -->
+            <section class="task-section">
+                <h2>任务清单</h2>
+                <div class="task-input-group">
+                    <input type="text" id="task-input" placeholder="输入新任务..." maxlength="200">
+                    <button id="add-task-btn" class="btn btn-add">添加</button>
+                </div>
+                <div class="task-table-container">
+                    <table class="task-table" id="task-table">
+                        <thead>
+                            <tr>
+                                <th class="col-status">状态</th>
+                                <th class="col-content">任务内容</th>
+                                <th class="col-action">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="task-tbody">
+                        </tbody>
+                    </table>
+                    <div id="empty-task-tip" class="empty-tip">暂无任务，请添加新任务</div>
+                </div>
+            </section>
+            
+            <!-- 操作按钮区 -->
+            <section class="action-section">
+                <div class="btn-group">
+                    <button id="save-btn" class="btn btn-primary">保存日志</button>
+                    <button id="reset-btn" class="btn btn-warning">重置</button>
+                </div>
+                <button id="delete-btn" class="btn btn-danger">删除当日日志</button>
+            </section>
+        </aside>
+        
+        <!-- 右侧历史日志区 -->
+        <main class="right-panel">
+            <header class="panel-header">
+                <h2>历史日志</h2>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="搜索关键词..." maxlength="100">
+                        <button id="search-btn" class="btn btn-search">搜索</button>
+                        <button id="clear-search-btn" class="btn btn-secondary">清除</button>
+                    </div>
+                    <button id="export-btn" class="btn btn-export">导出 Markdown</button>
+                </div>
+            </header>
+            
+            <div class="history-container" id="history-container">
+                <div id="empty-history-tip" class="empty-tip">暂无历史日志</div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- 确认弹窗 -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">确认操作</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">确定要执行此操作吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-confirm" class="btn btn-danger">确认</button>
+                <button id="modal-cancel" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 提示消息 -->
+    <div id="toast" class="toast"></div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
