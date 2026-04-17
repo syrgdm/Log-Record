@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人工作日志管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 左侧编辑区 -->
+        <aside class="editor-panel">
+            <!-- 头部标题 -->
+            <header class="editor-header">
+                <h1 class="app-title">📋 工作日志管理</h1>
+                <p class="app-subtitle">离线个人工作记录系统</p>
+            </header>
+
+            <!-- 日期选择区 -->
+            <section class="date-section">
+                <label for="date-picker" class="section-label">📅 选择日期</label>
+                <input type="date" id="date-picker" class="date-input">
+            </section>
+
+            <!-- 工作记录编辑区 -->
+            <section class="content-section">
+                <label for="work-content" class="section-label">📝 当日工作记录</label>
+                <textarea 
+                    id="work-content" 
+                    class="content-textarea" 
+                    placeholder="请输入当日工作内容、项目进展、遇到的问题等..."
+                    rows="8"
+                ></textarea>
+            </section>
+
+            <!-- 任务管理区 -->
+            <section class="tasks-section">
+                <div class="tasks-header">
+                    <label class="section-label">✅ 任务清单</label>
+                    <button id="add-task-btn" class="btn btn-small btn-primary">+ 添加任务</button>
+                </div>
+                <div class="tasks-table-container">
+                    <table class="tasks-table" id="tasks-table">
+                        <thead>
+                            <tr>
+                                <th class="col-status">状态</th>
+                                <th class="col-content">任务内容</th>
+                                <th class="col-action">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasks-tbody">
+                            <!-- 任务行动态生成 -->
+                        </tbody>
+                    </table>
+                    <div id="empty-tasks" class="empty-tasks">
+                        <p>暂无任务，点击上方按钮添加</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 功能操作区 -->
+            <section class="actions-section">
+                <button id="save-btn" class="btn btn-primary btn-large">
+                    <span class="btn-icon">💾</span>
+                    <span class="btn-text">保存日志</span>
+                </button>
+                <button id="reset-btn" class="btn btn-warning btn-large">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">重置清空</span>
+                </button>
+                <button id="delete-btn" class="btn btn-danger btn-large">
+                    <span class="btn-icon">🗑️</span>
+                    <span class="btn-text">删除日志</span>
+                </button>
+            </section>
+        </aside>
+
+        <!-- 右侧历史日志区 -->
+        <main class="history-panel">
+            <!-- 搜索和导出工具栏 -->
+            <div class="history-toolbar">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="search-input" 
+                        placeholder="🔍 搜索工作记录或任务内容..."
+                    >
+                    <button id="clear-search-btn" class="btn btn-small btn-secondary">清除</button>
+                </div>
+                <button id="export-btn" class="btn btn-success">
+                    <span class="btn-icon">📥</span>
+                    <span class="btn-text">导出全部日志</span>
+                </button>
+            </div>
+
+            <!-- 历史日志列表 -->
+            <div class="history-list-container">
+                <h2 class="history-title">📚 历史日志归档</h2>
+                <div id="history-list" class="history-list">
+                    <!-- 历史日志卡片动态生成 -->
+                </div>
+                <div id="empty-history" class="empty-history">
+                    <div class="empty-icon">📭</div>
+                    <p>暂无历史日志记录</p>
+                    <p class="empty-hint">在左侧编辑并保存您的第一条工作日志</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 消息提示组件 -->
+    <div id="toast" class="toast">
+        <span id="toast-message" class="toast-message"></span>
+    </div>
+
+    <!-- 确认对话框 -->
+    <div id="confirm-dialog" class="confirm-dialog">
+        <div class="confirm-dialog-content">
+            <h3 id="confirm-title" class="confirm-title">确认操作</h3>
+            <p id="confirm-message" class="confirm-message">您确定要执行此操作吗？</p>
+            <div class="confirm-actions">
+                <button id="confirm-cancel" class="btn btn-secondary">取消</button>
+                <button id="confirm-ok" class="btn btn-danger">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
