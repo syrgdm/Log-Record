@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人工作日志管理系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部搜索栏 -->
+        <header class="header">
+            <h1>个人工作日志管理系统</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="全局搜索关键词..." class="search-input">
+                <button id="searchBtn" class="btn btn-search">搜索</button>
+                <button id="exportBtn" class="btn btn-export">导出 Markdown</button>
+            </div>
+        </header>
+
+        <!-- 主体内容 -->
+        <main class="main-content">
+            <!-- 左侧编辑区 -->
+            <section class="left-panel">
+                <div class="panel-header">
+                    <h2>日志编辑</h2>
+                    <input type="date" id="dateSelector" class="date-selector">
+                </div>
+
+                <!-- 工作记录编辑区 -->
+                <div class="editor-section">
+                    <label class="section-label">当日工作记录</label>
+                    <textarea id="workContent" class="content-editor" placeholder="请输入当日工作记录内容，支持换行输入..."></textarea>
+                </div>
+
+                <!-- 任务管理区 -->
+                <div class="tasks-section">
+                    <div class="tasks-header">
+                        <label class="section-label">任务清单</label>
+                        <button id="addTaskBtn" class="btn btn-add-task">+ 新增任务</button>
+                    </div>
+                    <div class="tasks-table">
+                        <div id="tasksContainer" class="tasks-container"></div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮区 -->
+                <div class="action-buttons">
+                    <button id="saveBtn" class="btn btn-save">保存日志</button>
+                    <button id="resetBtn" class="btn btn-reset">重置清空</button>
+                    <button id="deleteBtn" class="btn btn-delete">删除当日日志</button>
+                </div>
+
+                <!-- 消息提示 -->
+                <div id="toast" class="toast"></div>
+            </section>
+
+            <!-- 右侧历史日志区 -->
+            <section class="right-panel">
+                <div class="panel-header">
+                    <h2>历史日志</h2>
+                    <span id="logCount" class="log-count">共 0 条</span>
+                </div>
+                <div id="historyLogs" class="history-logs">
+                    <!-- 日志卡片将动态渲染 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 二次确认弹窗 -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modalTitle">确认操作</h3>
+            <p id="modalMessage">确定要执行此操作吗？</p>
+            <div class="modal-buttons">
+                <button id="modalCancel" class="btn btn-secondary">取消</button>
+                <button id="modalConfirm" class="btn btn-danger">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
